@@ -108,3 +108,11 @@ WHERE enclosure.name IN ('reptile house');
 -- ON s.id = a.employee_id
 -- WHERE e.name IN ('big cat field')
 -- AND a.day IN ('Friday');
+
+SELECT e.name, s.name, CAST (e.closedForMaintenance AS VARCHAR(255)) 
+FROM enclosure AS e
+INNER JOIN assignment AS a
+ON e.id = a.enclosure_id
+INNER JOIN staff AS s
+ON s.id = a.employee_id
+WHERE e.closedForMaintenance = (TRUE);  
