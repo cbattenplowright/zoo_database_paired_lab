@@ -47,6 +47,7 @@ INSERT INTO animal (name, type, age, enclosure_id) VALUES ('Tick-Tock', 'Crocodi
 INSERT INTO animal (name, type, age, enclosure_id) VALUES ('Mufasa', 'Lion', 40, 1);
 INSERT INTO animal (name, type, age, enclosure_id) VALUES ('Baghera', 'Jaguar', 22, 1);
 INSERT INTO animal (name, type, age, enclosure_id) VALUES ('Kaa', 'Python', 18, 2);
+INSERT INTO animal (name, type, age, enclosure_id) VALUES ('Mr Toad', 'Toad', 59, 2);
 
 
 INSERT INTO assignment(employee_id, enclosure_id, day) VALUES (1, 1, 'Monday');
@@ -83,11 +84,11 @@ INSERT INTO assignment(employee_id, enclosure_id, day) VALUES (5, 1, 'Friday');
 -- WHERE enclosure.name IN ('big cat field');
 
 -- SELECT statment which displays all animal names in the reptile house
-SELECT animal.id, animal.name, enclosure.name 
-FROM animal 
-INNER JOIN enclosure 
-ON animal.enclosure_id = enclosure.id 
-WHERE enclosure.name IN ('reptile house');
+-- SELECT animal.id, animal.name, enclosure.name 
+-- FROM animal 
+-- INNER JOIN enclosure 
+-- ON animal.enclosure_id = enclosure.id 
+-- WHERE enclosure.name IN ('reptile house');
 
 -- -- SELECT statement displays all the employee names that are working in the monkey house on Wednesdays
 -- SELECT e.name, s.name, a.day 
@@ -109,10 +110,32 @@ WHERE enclosure.name IN ('reptile house');
 -- WHERE e.name IN ('big cat field')
 -- AND a.day IN ('Friday');
 
-SELECT e.name, s.name, CAST (e.closedForMaintenance AS VARCHAR(255)) 
-FROM enclosure AS e
-INNER JOIN assignment AS a
-ON e.id = a.enclosure_id
-INNER JOIN staff AS s
-ON s.id = a.employee_id
-WHERE e.closedForMaintenance = (TRUE);  
+-- SELECT statement displays the employees that are working in encolsures that are closed for maintenance
+-- SELECT e.name, s.name, CAST (e.closedForMaintenance AS VARCHAR(255)) 
+-- FROM enclosure AS e
+-- INNER JOIN assignment AS a
+-- ON e.id = a.enclosure_id
+-- INNER JOIN staff AS s
+-- ON s.id = a.employee_id
+-- WHERE e.closedForMaintenance = (TRUE);  
+
+-- SELECT statement displays the name of the enclosure where the oldest animal lives
+--    SELECT e.name, a.name, a.age
+--    FROM enclosure AS e 
+--    INNER JOIN animal AS a 
+--    ON e.id = a.enclosure_id
+--    GROUP BY e.id, a.name, a.age
+--    ORDER BY a.age DESC, a.name LIMIT 1; 
+   
+
+-- SELECT statement that returns all the highest values instead of just one record 
+-- SELECT e.name, a.name, a.age
+-- FROM enclosure AS e 
+-- INNER JOIN animal AS a 
+-- ON e.id = a.enclosure_id
+-- GROUP BY e.id, a.name, a.age
+-- HAVING age = (SELECT MAX(age) FROM animal)
+-- ORDER BY a.name; 
+
+
+    
